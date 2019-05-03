@@ -1,0 +1,122 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.popup_content{
+  min-width: 400px;
+}
+
+button {
+  height: 30px;
+  width: 80px;
+  outline: none;
+  color: white;
+  border-radius: 20px;
+  background-color: #bae550;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+.link .link_content{
+  text-align: left;
+  margin: 0px 0 20px 0;
+}
+
+.form{
+  padding: 20px;
+}
+
+li{
+  transition: 0.3s;
+  line-height: 24px;
+  list-style: none;
+  text-align: left;
+  padding: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+li a{
+	color: white;
+}
+
+li:hover{
+  transition: 0.3s;
+  transform: scale(0.9);
+}
+
+li .date{
+  opacity: 0.7;
+  font-size: 10px;
+}
+
+li:nth-child(4n+1) {
+  background-color: #556270;
+}
+li:nth-child(4n+2) {
+  background-color: #4e6d8a;
+}
+li:last-child {
+  background-color: #4ECDC4;
+}
+
+/* background-color: #abe9cd;
+background-image: linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%); */
+
+/*Animation load */
+.wrapper {
+	display: block;
+  padding: 10px;
+  background: #fff;
+  width: 100%;
+}
+
+.wrapper-cell {
+  margin-bottom: 30px;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -500px 0;
+  }
+  100% {
+    background-position: 500px 0;
+  }
+}
+
+.animated-background {
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f6f6;
+  background: linear-gradient(to right, #f6f6f6 8%, #f0f0f0 18%, #f6f6f6 33%);
+  background-size: 800px 104px;
+  height: 96px;
+  position: relative;
+}
+
+.text {
+  padding-left: 10px;
+}
+
+.text-line {
+	display: block;
+  height: 10px;
+  margin: 4px 0;
+	animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f6f6;
+  background: linear-gradient(to right, #f6f6f6 8%, #f0f0f0 18%, #f6f6f6 33%);
+  background-size: 800px 104px;
+  position: relative;
+}

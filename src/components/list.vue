@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import firebase from '../../libs/firebase.js'
-import moment from 'moment'
+import firebase from '../../libs/firebase.js';
+import moment from 'moment';
 
 export default {
   data () {

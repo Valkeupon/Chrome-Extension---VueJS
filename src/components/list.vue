@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <ul v-else>
+    <ul v-else v-bind:class="active">
       <li v-for="item in items" :key="item.id">
         <a :href="item.content" target="_blank">
           <div>{{ item.title }}</div>
@@ -45,7 +45,8 @@ export default {
   data () {
     return {
       items: [],
-      load: true
+      load: true,
+      active: ""
     }
   },
   created: function () {
@@ -64,6 +65,10 @@ export default {
         }
         this.items = res
         this.load = false
+        const _this = this
+        setTimeout(function(){
+          _this.active = "active"
+        }, 10);
       })
     }
   }

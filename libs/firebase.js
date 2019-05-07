@@ -1,4 +1,5 @@
-import firebase from 'firebase';
+import firebase from 'firebase'
+import metaget from 'metaget'
 
 const config = {
   apiKey: 'AIzaSyAp5Xbc_MJhPbCC9867fDEBiejU8o_wYhU',
@@ -12,12 +13,14 @@ const config = {
 firebase.initializeApp(config)
 const db = firebase.firestore()
 
-const httpGet = function (url) {
-  const xmlHttp = new XMLHttpRequest()
-  const theUrl = 'https://getmeta.info/json?url=' + url
-  xmlHttp.open('GET', theUrl, false) // false for synchronous request
-  xmlHttp.send(null)
-  return xmlHttp.responseText
+const httpGet = function (url, callback) {
+  metaget.fetch(url, function (err, meta_response) {
+  	if(err){
+  		callback("error");
+  	}else{
+  		callback(meta_response);
+  	}
+  });
 }
 
 export default {
@@ -52,23 +55,26 @@ export default {
       return
     }
 
-    let infos = httpGet(link)
-    if (!infos || infos === 'Server error') {
-      console.log({ type: 'error', content: 'Le lien est incorrect' })
-      return
-    }
+    httpGet(link, (infos) => {
+      if (!infos || infos === "error") {
+        callback({ type: 'error', content: 'Le lien est incorrect' })
+        return
+      }
 
-    infos = JSON.parse(infos)
-    db.collection('messages').add({
-      title: infos.title,
-      content: link,
-      createdAt: new Date().getTime()
-    })
-      .then(function (doc) {
-        callback({ type: 'succes', content: 'Lien envoyé' })
-      })
-      .catch(function (error) {
-        console.error('Error adding document: ', error)
-      })
+      const title = infos["og:title"] || link
+      const describ = infos["og:description"] || "Aucune description"
+
+      db.collection('messages').add({
+        title: title,
+        describ: describ,
+        content: link,
+        createdAt: new Date().getTime()
+      }).then(function (doc) {
+          callback({ type: 'succes', content: 'Lien envoyé' })
+        })
+        .catch(function (error) {
+          console.error('Error adding document: ', error)
+        })
+    });
   }
 }

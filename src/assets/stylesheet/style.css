@@ -4,6 +4,10 @@
 	padding: 0;
 }
 
+iframe{
+	display: none;
+}
+
 .popup_content{
   min-width: 400px;
 }
@@ -39,16 +43,34 @@ li{
   padding: 20px;
   color: white;
   cursor: pointer;
+	transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.4s ease-in-out;
 }
 
 li a{
 	color: white;
 }
 
-li:hover{
-  transition: 0.3s;
-  transform: scale(0.9);
+li a:hover{
+	color: white;
+	/* text-decoration: none; */
 }
+
+ul.active > *:nth-child(1) {
+  transform: scaleX(1);
+  transition-delay: 0.2s;
+}
+ul.active > *:nth-child(2) {
+  transform: scaleX(1);
+  transition-delay: 0.4s;
+}
+ul.active > *:nth-child(3) {
+  transform: scaleX(1);
+  transition-delay: 0.6s;
+}
+
+
 
 li .date{
   opacity: 0.7;
